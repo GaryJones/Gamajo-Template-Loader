@@ -67,7 +67,7 @@ class Gamajo_Template_Loader {
 		do_action( 'get_template_part_' . $slug, $slug, $name );
 
 		// Get files names of templates, for given slug and name.
-		$templates = $this->get_template_possible_parts( $slug, $name );
+		$templates = $this->get_template_file_names( $slug, $name );
 
 		// Return the part that is found
 		return $this->locate_template( $templates, $load, false );
@@ -83,7 +83,7 @@ class Gamajo_Template_Loader {
 	 *
 	 * @return array
 	 */
-	protected function get_template_possible_parts( $slug, $name ) {
+	protected function get_template_file_names( $slug, $name ) {
 		if ( isset( $name ) ) {
 			$templates[] = $slug . '-' . $name . '.php';
 		}
