@@ -67,7 +67,7 @@ class Gamajo_Template_Loader {
 		do_action( 'get_template_part_' . $slug, $slug, $name );
 
 		// Get files names of templates, for given slug and name.
-		$templates = $this->get_template_file_names( $slug, $name );
+		$templates = $this->get_template_possible_parts( $slug, $name );
 
 		// Return the part that is found
 		return $this->locate_template( $templates, $load, false );
@@ -171,7 +171,7 @@ class Gamajo_Template_Loader {
 
 		// Only add this conditionally, so non-child themes don't redundantly check active theme twice.
 		if ( is_child_theme() ) {
-			$file_paths[1] = trailingslashit( get_stylesheet_directory() ) . $theme_directory,
+			$file_paths[1] = trailingslashit( get_stylesheet_directory() ) . $theme_directory;
 		}
 
 		/**
