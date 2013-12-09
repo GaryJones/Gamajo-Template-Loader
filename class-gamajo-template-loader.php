@@ -171,7 +171,7 @@ class Gamajo_Template_Loader {
 
 		// Only add this conditionally, so non-child themes don't redundantly check active theme twice.
 		if ( is_child_theme() ) {
-			$file_paths[1] = trailingslashit( get_stylesheet_directory() ) . $theme_directory,
+			$file_paths[1] = trailingslashit( get_stylesheet_directory() ) . $theme_directory;
 		}
 
 		/**
