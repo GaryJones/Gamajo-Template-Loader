@@ -122,7 +122,7 @@ class Gamajo_Template_Loader {
 	 *
 	 * @return string The template filename if one is located.
 	 */
-	protected function locate_template( $template_names, $load = false, $require_once = true ) {
+	public function locate_template( $template_names, $load = false, $require_once = true ) {
 		// No file found yet
 		$located = false;
 
