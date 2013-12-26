@@ -128,6 +128,7 @@ class Gamajo_Template_Loader {
 
 		// Remove empty entries
 		$template_names = array_filter( (array) $template_names );
+		$template_paths = $this->get_template_paths();
 
 		// Try to find a template file
 		foreach ( $template_names as $template_name ) {
@@ -135,7 +136,7 @@ class Gamajo_Template_Loader {
 			$template_name = ltrim( $template_name, '/' );
 
 			// Try locating this template file by looping through the template paths
-			foreach ( $this->get_template_paths() as $template_path ) {
+			foreach ( $template_paths as $template_path ) {
 				if ( file_exists( $template_path . $template_name ) ) {
 					$located = $template_path . $template_name;
 					break;
