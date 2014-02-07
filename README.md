@@ -45,6 +45,12 @@ This isn't a WordPress plugin on its own, so the usual instructions don't apply.
   ~~~
 This will try to load up `wp-content/themes/my-theme/meal-planner/recipe-ingredients.php`, or `wp-content/themes/my-theme/meal-planner/recipe.php`, then fallback to `wp-content/themes/plugins/meal-planner/templates/recipe-ingredients.php` or `wp-content/themes/plugins/meal-planner/templates/recipe.php`.
 
+## Usage Example
+
+The [Cue](https://github.com/AudioTheme/cue) plugin from [AudioTheme](http://audiotheme.com/) uses this class. Starting at [https://github.com/AudioTheme/cue/tree/develop/includes](https://github.com/AudioTheme/cue/tree/develop/includes), it has this class in the vendor directory, then the required subclass of my class in the `class-cue-template-loader.php` file, which sets a few basic properties. It also has a template in [https://github.com/AudioTheme/cue/tree/develop/templates](https://github.com/AudioTheme/cue/tree/develop/templates).
+
+If you wanted the playlist to have different markup for your theme, you'd copy `templates/playlist.php` to `wp-content/themes/{your-active-theme}/cue/playlist.php` and do whatever changes you wanted. WordPress will look for that file first, before then checking a parent theme location (if your active theme is a child theme), before falling back to the default template that comes with the Cue plugin.
+
 ## Contributions
 Contributions are welcome - fork, fix and send pull requests against the `develop` branch please.
 
