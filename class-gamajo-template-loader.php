@@ -199,7 +199,7 @@ class Gamajo_Template_Loader {
 	 * @return string
 	 */
 	protected function get_templates_dir() {
-		return $this->plugin_directory . 'templates';
+		return trailingslashit( $this->plugin_directory ) . 'templates';
 	}
 
 }
