@@ -55,7 +55,7 @@ class Gamajo_Template_Loader {
 	 * @since 1.0.0
 	 * @type string
 	 */
-	protected $templates_directory = 'templates'; // or includes/templates, etc.
+	protected $plugin_templates_directory = 'templates'; // or includes/templates, etc.
 
 	/**
 	 * Retrieve a template part.
@@ -209,7 +209,7 @@ class Gamajo_Template_Loader {
 	 * @return string
 	 */
 	protected function get_templates_dir() {
-		return trailingslashit( $this->plugin_directory ) . $this->templates_directory;
+		return trailingslashit( $this->plugin_directory ) . $this->plugin_templates_directory;
 	}
 
 }
