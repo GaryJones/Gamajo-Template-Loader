@@ -48,6 +48,17 @@ class Gamajo_Template_Loader {
 	protected $plugin_directory = YOUR_PLUGIN_DIR; // or plugin_dir_path( dirname( __FILE__ ) ); etc.
 
 	/**
+	 * Directory name where templates are found in this plugin.
+	 *
+	 * Can either be a defined constant, or a relative reference from where the subclass lives.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @type string
+	 */
+	protected $plugin_template_directory = 'templates'; // or includes/templates, etc.
+
+	/**
 	 * Retrieve a template part.
 	 *
 	 * @since 1.0.0
@@ -201,7 +212,7 @@ class Gamajo_Template_Loader {
 	 * @return string
 	 */
 	protected function get_templates_dir() {
-		return $this->plugin_directory . 'templates';
+		return trailingslashit( $this->plugin_directory ) . $this->plugin_template_directory;
 	}
 
 }
