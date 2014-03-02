@@ -7,6 +7,7 @@
  * @link      http://github.com/GaryJones/Gamajo-Template-Loader
  * @copyright 2013 Gary Jones
  * @license   GPL-2.0+
+ * @version   1.0.0
  */
 
 /**
@@ -20,11 +21,11 @@
  * @author  Gary Jones
  */
 class Gamajo_Template_Loader {
-
 	/**
 	 * Prefix for filter names.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @type string
 	 */
 	protected $filter_prefix = 'your_plugin';
@@ -33,6 +34,7 @@ class Gamajo_Template_Loader {
 	 * Directory name where custom templates for this plugin should be found in the theme.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @type string
 	 */
 	protected $theme_template_directory = 'your-plugin'; // or 'your-plugin-templates' etc.
@@ -43,6 +45,7 @@ class Gamajo_Template_Loader {
 	 * Can either be a defined constant, or a relative reference from where the subclass lives.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @type string
 	 */
 	protected $plugin_directory = YOUR_PLUGIN_DIR; // or plugin_dir_path( dirname( __FILE__ ) ); etc.
@@ -214,5 +217,4 @@ class Gamajo_Template_Loader {
 	protected function get_templates_dir() {
 		return trailingslashit( $this->plugin_directory ) . $this->plugin_template_directory;
 	}
-
 }
