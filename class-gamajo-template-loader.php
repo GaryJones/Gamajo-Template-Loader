@@ -46,6 +46,16 @@ class Gamajo_Template_Loader {
 	 * @type string
 	 */
 	protected $plugin_directory = YOUR_PLUGIN_DIR; // or plugin_dir_path( dirname( __FILE__ ) ); etc.
+	
+	/**
+	 * Reference to the template directory path of this plugin.
+	 *
+	 * Can either be a defined constant, or a relative reference from where the subclass lives.
+	 *
+	 * @since 1.0.0
+	 * @type string
+	 */
+	protected $plugin_templates_directory = 'templates'; // or includes/templates, etc.
 
 	/**
 	 * Retrieve a template part.
@@ -123,13 +133,12 @@ class Gamajo_Template_Loader {
 	 *
 	 * @return string The template filename if one is located.
 	 */
-	public function locate_template( $template_names, $load = false, $require_once = true ) {
+	protected function locate_template( $template_names, $load = false, $require_once = true ) {
 		// No file found yet
 		$located = false;
 
 		// Remove empty entries
 		$template_names = array_filter( (array) $template_names );
-		$template_paths = $this->get_template_paths();
 
 		// Try to find a template file
 		foreach ( $template_names as $template_name ) {
@@ -137,10 +146,10 @@ class Gamajo_Template_Loader {
 			$template_name = ltrim( $template_name, '/' );
 
 			// Try locating this template file by looping through the template paths
-			foreach ( $template_paths as $template_path ) {
+			foreach ( $this->get_template_paths() as $template_path ) {
 				if ( file_exists( $template_path . $template_name ) ) {
 					$located = $template_path . $template_name;
-					break;
+					break 2;
 				}
 			}
 		}
@@ -201,7 +210,7 @@ class Gamajo_Template_Loader {
 	 * @return string
 	 */
 	protected function get_templates_dir() {
-		return $this->plugin_directory . 'templates';
+		return trailingslashit( $this->plugin_directory ) . $this->plugin_templates_directory;
 	}
 
 }
