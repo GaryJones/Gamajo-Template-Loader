@@ -84,6 +84,7 @@ class Gamajo_Template_Loader {
 	 * @return array
 	 */
 	protected function get_template_file_names( $slug, $name ) {
+		$templates = array();
 		if ( isset( $name ) ) {
 			$templates[] = $slug . '-' . $name . '.php';
 		}
