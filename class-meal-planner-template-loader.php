@@ -8,8 +8,10 @@
  * @copyright 2013 Gary Jones
  * @license   GPL-2.0+
  */
-
-require plugin_dir_path( __FILE__ ) . 'class-gamajo-template-loader.php';
+ 
+if( ! class_exists( 'Gamajo_Template_Loader' ) ) {
+	require plugin_dir_path( __FILE__ ) . 'class-gamajo-template-loader.php';
+}
 
 /**
  * Template loader for Meal Planner.

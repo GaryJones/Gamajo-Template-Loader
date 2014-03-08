@@ -7,6 +7,7 @@
  * @link      http://github.com/GaryJones/Gamajo-Template-Loader
  * @copyright 2013 Gary Jones
  * @license   GPL-2.0+
+ * @version   1.1.0
  */
 
 /**
@@ -20,11 +21,11 @@
  * @author  Gary Jones
  */
 class Gamajo_Template_Loader {
-
 	/**
 	 * Prefix for filter names.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @type string
 	 */
 	protected $filter_prefix = 'your_plugin';
@@ -33,6 +34,7 @@ class Gamajo_Template_Loader {
 	 * Directory name where custom templates for this plugin should be found in the theme.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @type string
 	 */
 	protected $theme_template_directory = 'your-plugin'; // or 'your-plugin-templates' etc.
@@ -43,9 +45,21 @@ class Gamajo_Template_Loader {
 	 * Can either be a defined constant, or a relative reference from where the subclass lives.
 	 *
 	 * @since 1.0.0
+	 *
 	 * @type string
 	 */
 	protected $plugin_directory = YOUR_PLUGIN_DIR; // or plugin_dir_path( dirname( __FILE__ ) ); etc.
+
+	/**
+	 * Directory name where templates are found in this plugin.
+	 *
+	 * Can either be a defined constant, or a relative reference from where the subclass lives.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @type string
+	 */
+	protected $plugin_template_directory = 'templates'; // or includes/templates, etc.
 
 	/**
 	 * Retrieve a template part.
@@ -84,6 +98,7 @@ class Gamajo_Template_Loader {
 	 * @return array
 	 */
 	protected function get_template_file_names( $slug, $name ) {
+		$templates = array();
 		if ( isset( $name ) ) {
 			$templates[] = $slug . '-' . $name . '.php';
 		}
@@ -122,12 +137,13 @@ class Gamajo_Template_Loader {
 	 *
 	 * @return string The template filename if one is located.
 	 */
-	protected function locate_template( $template_names, $load = false, $require_once = true ) {
+	public function locate_template( $template_names, $load = false, $require_once = true ) {
 		// No file found yet
 		$located = false;
 
 		// Remove empty entries
 		$template_names = array_filter( (array) $template_names );
+		$template_paths = $this->get_template_paths();
 
 		// Try to find a template file
 		foreach ( $template_names as $template_name ) {
@@ -135,10 +151,10 @@ class Gamajo_Template_Loader {
 			$template_name = ltrim( $template_name, '/' );
 
 			// Try locating this template file by looping through the template paths
-			foreach ( $this->get_template_paths() as $template_path ) {
+			foreach ( $template_paths as $template_path ) {
 				if ( file_exists( $template_path . $template_name ) ) {
 					$located = $template_path . $template_name;
-					break;
+					break 2;
 				}
 			}
 		}
@@ -199,7 +215,6 @@ class Gamajo_Template_Loader {
 	 * @return string
 	 */
 	protected function get_templates_dir() {
-		return $this->plugin_directory . 'templates';
+		return trailingslashit( $this->plugin_directory ) . $this->plugin_template_directory;
 	}
-
 }
