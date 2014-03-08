@@ -7,7 +7,7 @@
  * @link      http://github.com/GaryJones/Gamajo-Template-Loader
  * @copyright 2013 Gary Jones
  * @license   GPL-2.0+
- * @version   1.0.0
+ * @version   1.1.0
  */
 
 /**
@@ -55,7 +55,7 @@ class Gamajo_Template_Loader {
 	 *
 	 * Can either be a defined constant, or a relative reference from where the subclass lives.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @type string
 	 */
