@@ -154,7 +154,7 @@ class Gamajo_Template_Loader {
 			foreach ( $template_paths as $template_path ) {
 				if ( file_exists( $template_path . $template_name ) ) {
 					$located = $template_path . $template_name;
-					break;
+					break 2;
 				}
 			}
 		}
