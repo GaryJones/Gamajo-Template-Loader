@@ -198,7 +198,7 @@ class Gamajo_Template_Loader {
 		 * @param array $var Default is directory in child theme at index 1, parent theme at 10, and plugin at 100.
 		 */
 		$file_paths = apply_filters( $this->filter_prefix . '_template_paths', $file_paths );
-
+		
 		// sort the file paths based on priority
 		ksort( $file_paths, SORT_NUMERIC );
 
