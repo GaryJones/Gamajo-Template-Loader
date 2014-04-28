@@ -182,7 +182,7 @@ class Gamajo_Template_Loader {
 
 		$file_paths = array(
 			10  => trailingslashit( get_template_directory() ) . $theme_directory,
-			100 => $this->get_templates_dir()
+			100 => $this->get_templates_dir(),
 		);
 
 		// Only add this conditionally, so non-child themes don't redundantly check active theme twice.
