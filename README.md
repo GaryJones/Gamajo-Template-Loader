@@ -43,7 +43,7 @@ This isn't a WordPress plugin on its own, so the usual instructions don't apply.
       meal_planner_get_template_part( 'recipe', 'instructions' );
   }
   ~~~
-This will try to load up `wp-content/themes/my-theme/meal-planner/recipe-ingredients.php`, or `wp-content/themes/my-theme/meal-planner/recipe.php`, then fallback to `wp-content/themes/plugins/meal-planner/templates/recipe-ingredients.php` or `wp-content/themes/plugins/meal-planner/templates/recipe.php`.
+This will try to load up `wp-content/themes/my-theme/meal-planner/recipe-ingredients.php`, or `wp-content/themes/my-theme/meal-planner/recipe.php`, then fallback to `wp-content/plugins/meal-planner/templates/recipe-ingredients.php` or `wp-content/plugins/meal-planner/templates/recipe.php`.
 
 ## Usage Example
 
