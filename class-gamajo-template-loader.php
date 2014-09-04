@@ -1,6 +1,4 @@
 <?php
-
-if ( !class_exists( 'Gamajo_Template_Loader' ) )  {
 	/**
 	 * Template Loader for Plugins.
 	 *
@@ -12,6 +10,7 @@ if ( !class_exists( 'Gamajo_Template_Loader' ) )  {
 	 * @version   1.1.0
 	 */
 
+if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 	/**
 	 * Template loader.
 	 *
