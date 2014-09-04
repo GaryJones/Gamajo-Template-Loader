@@ -1,14 +1,14 @@
 <?php
-	/**
-	 * Template Loader for Plugins.
-	 *
-	 * @package   Gamajo_Template_Loader
-	 * @author    Gary Jones
-	 * @link      http://github.com/GaryJones/Gamajo-Template-Loader
-	 * @copyright 2013 Gary Jones
-	 * @license   GPL-2.0+
-	 * @version   1.1.0
-	 */
+/**
+ * Template Loader for Plugins.
+ *
+ * @package   Gamajo_Template_Loader
+ * @author    Gary Jones
+ * @link      http://github.com/GaryJones/Gamajo-Template-Loader
+ * @copyright 2013 Gary Jones
+ * @license   GPL-2.0+
+ * @version   1.1.0
+ */
 
 if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 	/**
