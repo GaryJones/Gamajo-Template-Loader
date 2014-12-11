@@ -1,5 +1,7 @@
 # Gamajo Template Loader
 
+[![Code Climate](https://codeclimate.com/github/GaryJones/Gamajo-Template-Loader/badges/gpa.svg)](https://codeclimate.com/github/GaryJones/Gamajo-Template-Loader)
+
 A class to copy into your WordPress plugin, to allow loading template parts with fallback through the child theme > parent theme > plugin.
 
 ## Description
