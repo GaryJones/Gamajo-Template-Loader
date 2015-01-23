@@ -7,7 +7,7 @@
  * @link      http://github.com/GaryJones/Gamajo-Template-Loader
  * @copyright 2013 Gary Jones
  * @license   GPL-2.0+
- * @version   1.1.0
+ * @version   1.2.0-dev
  */
 
 if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
@@ -89,6 +89,21 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 		}
 
 		/**
+		 * Make custom data available to template.
+		 *
+		 * Data is available to the template as keys under the `$template` variable.
+		 * i.e. A value provided here under `$data['foo']` is available as `$template['foo']`.
+		 *
+		 * @since 1.2.0
+		 *
+		 * @param array $data Custom data for the
+		 */
+		public function add_template_data( array $data ) {
+			global $wp_query;
+			$wp_query->query_vars['template'] = $data;
+		}
+
+		/**
 		 * Given a slug and optional name, create the file names of templates.
 		 *
 		 * @since 1.0.0
@@ -134,7 +149,7 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 		 * @param string|array $template_names Template file(s) to search for, in order.
 		 * @param bool         $load           If true the template file will be loaded if it is found.
 		 * @param bool         $require_once   Whether to require_once or require. Default true.
-		 *   Has no effect if $load is false.
+		 *                                     Has no effect if $load is false.
 		 *
 		 * @return string The template filename if one is located.
 		 */
