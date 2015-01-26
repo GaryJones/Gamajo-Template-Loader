@@ -63,6 +63,15 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 		protected $plugin_template_directory = 'templates'; // or includes/templates, etc.
 
 		/**
+		 * Clean up template data.
+		 *
+		 * @since 1.2.0
+		 */
+		public function __destruct() {
+			$this->unset_template_data();
+		}
+
+		/**
 		 * Retrieve a template part.
 		 *
 		 * @since 1.0.0
@@ -91,16 +100,32 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 		/**
 		 * Make custom data available to template.
 		 *
-		 * Data is available to the template as keys under the `$template` variable.
-		 * i.e. A value provided here under `$data['foo']` is available as `$template['foo']`.
+		 * Data is available to the template as properties under the `$data` variable.
+		 * i.e. A value provided here under `$data['foo']` is available as `$data->foo`.
+		 *
+		 * When an input key has a hyphen, you can use `$data->{foo-bar}` in the template.
 		 *
 		 * @since 1.2.0
 		 *
 		 * @param array $data Custom data for the
 		 */
-		public function add_template_data( array $data ) {
+		public function set_template_data( array $data ) {
 			global $wp_query;
-			$wp_query->query_vars['template'] = $data;
+			$wp_query->query_vars['data'] = (object) $data;
+		}
+
+		/**
+		 * Remove access to custom data in template.
+		 *
+		 * Good to use once the final template part has been requested.
+		 *
+		 * @since 1.2.0
+		 */
+		public function unset_template_data() {
+			global $wp_query;
+			if ( isset( $wp_query->query_vars['data'] ) ) {
+				unset( $wp_query->query_vars['data'] );
+			}
 		}
 
 		/**
