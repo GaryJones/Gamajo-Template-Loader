@@ -16,7 +16,7 @@ This isn't a WordPress plugin on its own, so the usual instructions don't apply.
 
 1. Copy [`class-gamajo-template-loader.php`](class-gamajo-template-loader.php) into your plugin. It can be into a file in the plugin root, or better, an `includes` directory.
 2. Create a new file, such as `class-your-plugin-template-loader.php`, in the same directory.
-3. Create a class in that file that extends `Gamajo_Tech_Loader`. You can copy the [meal planner](class-meal-planner-template-loader.php) example class as a starting point if it helps.
+3. Create a class in that file that extends `Gamajo_Template_Loader`. You can copy the [meal planner](class-meal-planner-template-loader.php) example class as a starting point if it helps.
 4. Override the class properties to suit your plugin. You could also override the `get_templates_dir()` method if it isn't right for you.
 5. You can now instantiate your custom template loader class, and use it to call the `get_template_part()` method. This could be within a shortcode callback, or something you want theme developers to include in their files.
 6. Optionally, you can wrap the reference to the object in a functions e.g.
