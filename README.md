@@ -29,14 +29,24 @@ This isn't a WordPress plugin on its own, so the usual instructions don't apply.
   ~~~php
   $meal_planner_template_loader->get_template_part( 'recipe' );
   ~~~
-* If you want to pass data to the template, call the `add_template_data()` method with an array before calling `get_template_part()`.
+* If you want to pass data to the template, call the `set_template_data()` method with an array before calling `get_template_part()`.
 
   ~~~php
   $data = array( 'foo' => 'bar', 'baz' => 'boom' );
-  $meal_planner_template_loader->add_template_data( $data );
+  $meal_planner_template_loader->set_template_data( $data );
   $meal_planner_template_loader->get_template_part( 'recipe' );
   ~~~
-The value of `bar` is now available inside the recipe template as `$template['foo']`.
+  
+  The value of `bar` is now available inside the recipe template as `$data['foo']`. If you wish to use a different variable name, add a second parameter to `set_template_data()`:
+
+  ~~~php
+  $data = array( 'foo' => 'bar', 'baz' => 'boom' );
+  $meal_planner_template_loader->set_template_data( $data, 'context' );
+  $meal_planner_template_loader->get_template_part( 'recipe' );
+  ~~~
+  
+  The value of `bar` is now available inside the recipe template as `$context['foo']`.
+
 * Optionally, you can wrap the reference to the object in a functions e.g.
 
   ~~~php
