@@ -8,8 +8,8 @@
  * @copyright 2013 Gary Jones
  * @license   GPL-2.0+
  */
- 
-if( ! class_exists( 'Gamajo_Template_Loader' ) ) {
+
+if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 	require plugin_dir_path( __FILE__ ) . 'class-gamajo-template-loader.php';
 }
 
@@ -22,12 +22,12 @@ if( ! class_exists( 'Gamajo_Template_Loader' ) ) {
  * @author  Gary Jones
  */
 class Meal_Planner_Template_Loader extends Gamajo_Template_Loader {
-
 	/**
 	 * Prefix for filter names.
 	 *
 	 * @since 1.0.0
-	 * @type string
+	 *
+	 * @var string
 	 */
 	protected $filter_prefix = 'meal_planner';
 
@@ -35,7 +35,8 @@ class Meal_Planner_Template_Loader extends Gamajo_Template_Loader {
 	 * Directory name where custom templates for this plugin should be found in the theme.
 	 *
 	 * @since 1.0.0
-	 * @type string
+	 *
+	 * @var string
 	 */
 	protected $theme_template_directory = 'meal-planner';
 
@@ -51,8 +52,21 @@ class Meal_Planner_Template_Loader extends Gamajo_Template_Loader {
 	 * ~~~
 	 *
 	 * @since 1.0.0
-	 * @type string
+	 *
+	 * @var string
 	 */
 	protected $plugin_directory = MEAL_PLANNER_PLUGIN_DIR;
 
+	/**
+	 * Directory name where templates are found in this plugin.
+	 *
+	 * Can either be a defined constant, or a relative reference from where the subclass lives.
+	 *
+	 * e.g. 'templates' or 'includes/templates', etc.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @var string
+	 */
+	protected $plugin_template_directory = 'templates';
 }
