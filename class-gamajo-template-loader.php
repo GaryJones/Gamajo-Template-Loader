@@ -10,7 +10,8 @@
  * @version   1.2.0-dev
  */
 
-if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
+if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
+
 	/**
 	 * Template loader.
 	 *
@@ -27,40 +28,46 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @type string
+		 * @var string
 		 */
 		protected $filter_prefix = 'your_plugin';
 
 		/**
 		 * Directory name where custom templates for this plugin should be found in the theme.
 		 *
+		 * e.g. 'your-plugin-templates'
+		 *
 		 * @since 1.0.0
 		 *
-		 * @type string
+		 * @var string
 		 */
-		protected $theme_template_directory = 'your-plugin'; // or 'your-plugin-templates' etc.
+		protected $theme_template_directory = 'plugin-templates';
 
 		/**
 		 * Reference to the root directory path of this plugin.
 		 *
 		 * Can either be a defined constant, or a relative reference from where the subclass lives.
 		 *
+		 * e.g. YOUR_PLUGIN_TEMPLATE or plugin_dir_path( dirname( __FILE__ ) ); etc.
+		 *
 		 * @since 1.0.0
 		 *
-		 * @type string
+		 * @var string
 		 */
-		protected $plugin_directory = YOUR_PLUGIN_DIR; // or plugin_dir_path( dirname( __FILE__ ) ); etc.
+		protected $plugin_directory;
 
 		/**
 		 * Directory name where templates are found in this plugin.
 		 *
 		 * Can either be a defined constant, or a relative reference from where the subclass lives.
 		 *
+		 * e.g. 'templates' or 'includes/templates', etc.
+		 *
 		 * @since 1.1.0
 		 *
-		 * @type string
+		 * @var string
 		 */
-		protected $plugin_template_directory = 'templates'; // or includes/templates, etc.
+		protected $plugin_template_directory = 'templates';
 
 		/**
 		 * Clean up template data.
@@ -76,24 +83,20 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @uses Gamajo_Template_Loader::get_template_possble_parts() Create file names of templates.
-		 * @uses Gamajo_Template_Loader::locate_template() Retrieve the name of the highest priority template
-		 *     file that exists.
-		 *
-		 * @param string  $slug
-		 * @param string  $name Optional. Default null.
-		 * @param bool    $load Optional. Default true.
+		 * @param string $slug Template slug.
+		 * @param string $name Optional. Template variation name. Default null.
+		 * @param bool   $load Optional. Whether to load template. Default true.
 		 *
 		 * @return string
 		 */
 		public function get_template_part( $slug, $name = null, $load = true ) {
-			// Execute code for this part
+			// Execute code for this part.
 			do_action( 'get_template_part_' . $slug, $slug, $name );
 
 			// Get files names of templates, for given slug and name.
 			$templates = $this->get_template_file_names( $slug, $name );
 
-			// Return the part that is found
+			// Return the part that is found.
 			return $this->locate_template( $templates, $load, false );
 		}
 
@@ -113,7 +116,8 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 		 */
 		public function set_template_data( array $data, $var_name = 'data' ) {
 			global $wp_query;
-			$wp_query->query_vars[$var_name] = (object) $data;
+
+			$wp_query->query_vars[ $var_name ] = (object) $data;
 		}
 
 		/**
@@ -125,6 +129,7 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 		 */
 		public function unset_template_data() {
 			global $wp_query;
+
 			if ( isset( $wp_query->query_vars['data'] ) ) {
 				unset( $wp_query->query_vars['data'] );
 			}
@@ -135,8 +140,8 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param string  $slug
-		 * @param string  $name
+		 * @param string $slug Template slug.
+		 * @param string $name Template variation name.
 		 *
 		 * @return array
 		 */
@@ -155,9 +160,9 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 			 *
 			 * @since 1.0.0
 			 *
-			 * @param array $templates Names of template files that should be looked for, for given slug and name.
-			 * @param string $slug Template slug.
-			 * @param string $name Template name.
+			 * @param array  $templates Names of template files that should be looked for, for given slug and name.
+			 * @param string $slug      Template slug.
+			 * @param string $name      Template variation name.
 			 */
 			return apply_filters( $this->filter_prefix . '_get_template_part', $templates, $slug, $name );
 		}
@@ -171,8 +176,6 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @uses Gamajo_Tech_Loader::get_template_paths() Return a list of paths to check for template locations.
-		 *
 		 * @param string|array $template_names Template file(s) to search for, in order.
 		 * @param bool         $load           If true the template file will be loaded if it is found.
 		 * @param bool         $require_once   Whether to require_once or require. Default true.
@@ -181,19 +184,19 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 		 * @return string The template filename if one is located.
 		 */
 		public function locate_template( $template_names, $load = false, $require_once = true ) {
-			// No file found yet
+			// No file found yet.
 			$located = false;
 
-			// Remove empty entries
+			// Remove empty entries.
 			$template_names = array_filter( (array) $template_names );
 			$template_paths = $this->get_template_paths();
 
-			// Try to find a template file
+			// Try to find a template file.
 			foreach ( $template_names as $template_name ) {
-				// Trim off any slashes from the template name
+				// Trim off any slashes from the template name.
 				$template_name = ltrim( $template_name, '/' );
 
-				// Try locating this template file by looping through the template paths
+				// Try locating this template file by looping through the template paths.
 				foreach ( $template_paths as $template_path ) {
 					if ( file_exists( $template_path . $template_name ) ) {
 						$located = $template_path . $template_name;
@@ -242,7 +245,7 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 			 */
 			$file_paths = apply_filters( $this->filter_prefix . '_template_paths', $file_paths );
 
-			// sort the file paths based on priority
+			// Sort the file paths based on priority.
 			ksort( $file_paths, SORT_NUMERIC );
 
 			return array_map( 'trailingslashit', $file_paths );
