@@ -37,7 +37,7 @@ This isn't a WordPress plugin on its own, so the usual instructions don't apply.
   $meal_planner_template_loader->get_template_part( 'recipe' );
   ~~~
   
-  The value of `bar` is now available inside the recipe template as `$data['foo']`. If you wish to use a different variable name, add a second parameter to `set_template_data()`:
+  The value of `bar` is now available inside the recipe template as `$data->foo`. If you wish to use a different variable name, add a second parameter to `set_template_data()`:
 
   ~~~php
   $data = array( 'foo' => 'bar', 'baz' => 'boom' );
