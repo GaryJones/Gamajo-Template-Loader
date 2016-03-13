@@ -67,7 +67,7 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) )  {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @uses Gamajo_Template_Loader::get_template_possble_parts() Create file names of templates.
+		 * @uses Gamajo_Template_Loader::get_template_file_names() Create file names of templates.
 		 * @uses Gamajo_Template_Loader::locate_template() Retrieve the name of the highest priority template
 		 *     file that exists.
 		 *
