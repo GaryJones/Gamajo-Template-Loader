@@ -21,19 +21,43 @@ This isn't a WordPress plugin on its own, so the usual instructions don't apply.
 5. You can now instantiate your custom template loader class, and use it to call the `get_template_part()` method. This could be within a shortcode callback, or something you want theme developers to include in their files.
 6. Optionally, you can wrap the reference to the object in a functions e.g.
 
-  ~~~
-  // Template loader instantiated elsewhere, such as the main plugin file
+  ~~~php
+  // Template loader instantiated elsewhere, such as the main plugin file.
   $meal_planner_template_loader = new Meal_Planner_Template_Loader;
+  ~~~
+* Use it to call the `get_template_part()` method. This could be within a shortcode callback, or something you want theme developers to include in their files.
 
-  // ...
+  ~~~php
+  $meal_planner_template_loader->get_template_part( 'recipe' );
+  ~~~
+* If you want to pass data to the template, call the `set_template_data()` method with an array before calling `get_template_part()`.
 
-  // This function can live wherever is suitable in your plugin
+  ~~~php
+  $data = array( 'foo' => 'bar', 'baz' => 'boom' );
+  $meal_planner_template_loader->set_template_data( $data );
+  $meal_planner_template_loader->get_template_part( 'recipe' );
+  ~~~
+  
+  The value of `bar` is now available inside the recipe template as `$data['foo']`. If you wish to use a different variable name, add a second parameter to `set_template_data()`:
+
+  ~~~php
+  $data = array( 'foo' => 'bar', 'baz' => 'boom' );
+  $meal_planner_template_loader->set_template_data( $data, 'context' );
+  $meal_planner_template_loader->get_template_part( 'recipe' );
+  ~~~
+  
+  The value of `bar` is now available inside the recipe template as `$context['foo']`.
+
+* Optionally, you can wrap the reference to the object in a functions e.g.
+
+  ~~~php
+  // This function can live wherever is suitable in your plugin.
   function meal_planner_get_template_part( $slug, $name = null, $load = true ) {
       global $meal_planner_template_loader;
       $meal_planner_template_loader->get_template_part( $slug, $name, $load );
   }
   ~~~
-7. An example using the helper function (or class method) would be:
+An example using this helper function would be:
 
   ~~~
   add_filter( 'the_content', 'meal_planner_single_recipe_content' );
@@ -42,7 +66,6 @@ This isn't a WordPress plugin on its own, so the usual instructions don't apply.
           return $content;
       }
       meal_planner_get_template_part( 'recipe', 'ingredients' );
-      meal_planner_get_template_part( 'recipe', 'instructions' );
   }
   ~~~
 This will try to load up `wp-content/themes/my-theme/meal-planner/recipe-ingredients.php`, or `wp-content/themes/my-theme/meal-planner/recipe.php`, then fallback to `wp-content/plugins/meal-planner/templates/recipe-ingredients.php` or `wp-content/plugins/meal-planner/templates/recipe.php`.
