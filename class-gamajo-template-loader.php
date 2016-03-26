@@ -7,7 +7,7 @@
  * @link      http://github.com/GaryJones/Gamajo-Template-Loader
  * @copyright 2013 Gary Jones
  * @license   GPL-2.0+
- * @version   1.2.0-dev
+ * @version   1.2.0
  */
 
 if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
@@ -35,7 +35,7 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 		/**
 		 * Directory name where custom templates for this plugin should be found in the theme.
 		 *
-		 * e.g. 'your-plugin-templates'
+		 * For example: 'your-plugin-templates'.
 		 *
 		 * @since 1.0.0
 		 *
@@ -54,7 +54,7 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 		 *
 		 * @var string
 		 */
-		protected $plugin_directory = 'YOUR_PLUGIN_DIR'; // or plugin_dir_path( dirname( __FILE__ ) ); etc.
+		protected $plugin_directory = 'YOUR_PLUGIN_DIR';
 
 		/**
 		 * Directory name where templates are found in this plugin.
