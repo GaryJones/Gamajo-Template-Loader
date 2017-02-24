@@ -51,8 +51,9 @@ This isn't a WordPress plugin on its own, so the usual instructions don't apply.
 
   ~~~php
   // This function can live wherever is suitable in your plugin.
-  function meal_planner_get_template_part( $slug, $name = null, $load = true ) {
+  function meal_planner_get_template_part( $slug, $data = array(), $name = null, $load = true ) {
       global $meal_planner_template_loader;
+      $meal_planner_template_loader->set_template_data( $data );
       $meal_planner_template_loader->get_template_part( $slug, $name, $load );
   }
   ~~~
