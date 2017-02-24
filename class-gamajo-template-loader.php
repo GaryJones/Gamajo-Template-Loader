@@ -128,11 +128,11 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 		 *
 		 * @since 1.2.0
 		 *
-		 * @param array  $data     Custom data for the template.
+		 * @param mixed  $data     Custom data for the template.
 		 * @param string $var_name Optional. Variable under which the custom data is available in the template.
 		 *                         Default is 'data'.
 		 */
-		public function set_template_data( array $data, $var_name = 'data' ) {
+		public function set_template_data( $data, $var_name = 'data' ) {
 			global $wp_query;
 
 			$wp_query->query_vars[ $var_name ] = (object) $data;
