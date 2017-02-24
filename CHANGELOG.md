@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+- Add a template cache to store previously located template paths.
+- Add a custom data variable name cache, so `unset_template_data()` can remove all custom references.
+- Update `set_template_data()` and `unset_template_data()` to become fluent methods.
+- Remove array type hint from `set_template_data()` argument.
+- Update documentation.
+
 ## [1.2.0] - 2016-03-26
 
 - Support adding custom template data.
