@@ -131,6 +131,8 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 		 * @param mixed  $data     Custom data for the template.
 		 * @param string $var_name Optional. Variable under which the custom data is available in the template.
 		 *                         Default is 'data'.
+		 *
+		 * @return Gamajo_Template_Loader
 		 */
 		public function set_template_data( $data, $var_name = 'data' ) {
 			global $wp_query;
@@ -141,6 +143,8 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 			if( $var_name !== 'data' ) {
 				$this->template_data_var_names[] = $var_name;
 			}
+			
+			return $this;
 		}
 
 		/**
@@ -149,6 +153,8 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 		 * Good to use once the final template part has been requested.
 		 *
 		 * @since 1.2.0
+		 *
+		 * @return Gamajo_Template_Loader
 		 */
 		public function unset_template_data() {
 			global $wp_query;
@@ -162,6 +168,8 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 					unset( $wp_query->query_vars[$var] );
 				}
 			}
+			
+			return $this;
 		}
 
 		/**
