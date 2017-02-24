@@ -29,25 +29,27 @@ This isn't a WordPress plugin on its own, so the usual instructions don't apply.
   ~~~php
   $meal_planner_template_loader->get_template_part( 'recipe' );
   ~~~
-* If you want to pass data to the template, call the `set_template_data()` method with an array before calling `get_template_part()`.
+* If you want to pass data to the template, call the `set_template_data()` method with an array before calling `get_template_part()`. `set_template_data()` returns the loader object to allow for method chaining.
 
   ~~~php
   $data = array( 'foo' => 'bar', 'baz' => 'boom' );
-  $meal_planner_template_loader->set_template_data( $data );
-  $meal_planner_template_loader->get_template_part( 'recipe' );
+  $meal_planner_template_loader
+      ->set_template_data( $data );
+      ->get_template_part( 'recipe' );
   ~~~
   
-  The value of `bar` is now available inside the recipe template as `$data['foo']`.
+  The value of `bar` is now available inside the recipe template as `$data->foo`.
   
   If you wish to use a different variable name, add a second parameter to `set_template_data()`:
 
   ~~~php
   $data = array( 'foo' => 'bar', 'baz' => 'boom' );
-  $meal_planner_template_loader->set_template_data( $data, 'context' );
-  $meal_planner_template_loader->get_template_part( 'recipe', 'ingredients' );
+  $meal_planner_template_loader
+      ->set_template_data( $data, 'context' )
+      ->get_template_part( 'recipe', 'ingredients' );
   ~~~
   
-  The value of `bar` is now available inside the recipe template as `$context['foo']`.
+  The value of `bar` is now available inside the recipe template as `$context->foo`.
 
   This will try to load up `wp-content/themes/my-theme/meal-planner/recipe-ingredients.php`, or `wp-content/themes/my-theme/meal-planner/recipe.php`, then fallback to `wp-content/plugins/meal-planner/templates/recipe-ingredients.php` or `wp-content/plugins/meal-planner/templates/recipe.php`.
 
