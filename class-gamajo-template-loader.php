@@ -7,7 +7,7 @@
  * @link      http://github.com/GaryJones/Gamajo-Template-Loader
  * @copyright 2013 Gary Jones
  * @license   GPL-2.0+
- * @version   1.2.0
+ * @version   1.3.0
  */
 
 if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
@@ -68,14 +68,14 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 		 * @var string
 		 */
 		protected $plugin_template_directory = 'templates';
-		
+
 		/**
 		 * Internal use only: Store located template paths.
 		 *
 		 * @var array
 		 */
 		private $template_path_cache = array();
-		
+
 		/**
 		 * Internal use only: Store variable names used for template data.
 		 *
@@ -86,7 +86,7 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 		 * @var array
 		 */
 		private $template_data_var_names = array('data');
-		
+
 		/**
 		 * Clean up template data.
 		 *
@@ -139,12 +139,12 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 			global $wp_query;
 
 			$wp_query->query_vars[ $var_name ] = (object) $data;
-			
+
 			// Add $var_name to custom variable store if not default value
 			if( $var_name !== 'data' ) {
 				$this->template_data_var_names[] = $var_name;
 			}
-			
+
 			return $this;
 		}
 
@@ -159,17 +159,17 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 		 */
 		public function unset_template_data() {
 			global $wp_query;
-			
+
 			// Remove any duplicates from the custom variable store
 			$custom_var_names = array_unique( $this->template_data_var_names );
-			
+
 			// Remove each custom data reference from $wp_query
 			foreach ( $custom_var_names as $var ) {
 				if ( isset( $wp_query->query_vars[$var] ) ) {
 					unset( $wp_query->query_vars[$var] );
 				}
 			}
-			
+
 			return $this;
 		}
 
@@ -222,15 +222,15 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 		 * @return string The template filename if one is located.
 		 */
 		public function locate_template( $template_names, $load = false, $require_once = true ) {
-		
+
 			// Use $template_names as a cache key - either first element of array or the variable itself if it's a string
 			$cache_key = is_array( $template_names ) ? $template_names[0] : $template_names;
-			
+
 			// If the key is in the cache array, we've already located this file.
 			if ( isset( $this->template_path_cache[$cache_key] ) ) {
 				$located = $this->template_path_cache[$cache_key];
 			} else {
-			
+
 				// No file found yet.
 				$located = false;
 
