@@ -26,7 +26,7 @@ or:
 
 ## Implement class
 1. Create a new file, such as `class-your-plugin-template-loader.php`, in the same directory.
-2. Create a class in that file that extends `Gamajo_Template_Loader`. You can see the Meal Planner Template Loader example class below as a starting point if it helps.
+2. Create a class in that file that extends `Gamajo_Template_Loader` (or the new prefixed name, if you installed via Composer/Mozart). You can see the Meal Planner Template Loader example class below as a starting point if it helps.
 3. Override the class properties to suit your plugin. You could also override the `get_templates_dir()` method if it isn't right for you.
 4. You can now instantiate your custom template loader class, and use it to call the `get_template_part()` method. This could be within a shortcode callback, or something you want theme developers to include in their files.
 
