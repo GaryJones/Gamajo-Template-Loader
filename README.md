@@ -14,11 +14,21 @@ The `get_template_part()` function in WordPress was never really designed with p
 
 This isn't a WordPress plugin on its own, so the usual instructions don't apply. Instead:
 
+### Manually install class
 1. Copy [`class-gamajo-template-loader.php`](class-gamajo-template-loader.php) into your plugin. It can be into a file in the plugin root, or better, an `includes` directory.
-2. Create a new file, such as `class-your-plugin-template-loader.php`, in the same directory.
-3. Create a class in that file that extends `Gamajo_Template_Loader`. You can see the Meal Planner Template Loader example class below as a starting point if it helps.
-4. Override the class properties to suit your plugin. You could also override the `get_templates_dir()` method if it isn't right for you.
-5. You can now instantiate your custom template loader class, and use it to call the `get_template_part()` method. This could be within a shortcode callback, or something you want theme developers to include in their files.
+
+or:
+
+### Install class via Composer
+1. Tell Composer to install this class as a dependency: `composer require gamajo/template-loader`
+2. Recommended: Install the Mozart package: `composer require coenjacobs/mozart --dev` and [configure it](https://github.com/coenjacobs/mozart#configuration).
+3. The class is now renamed to use your own prefix, to prevent collisions with other plugins bundling this class.
+
+## Implement class
+1. Create a new file, such as `class-your-plugin-template-loader.php`, in the same directory.
+2. Create a class in that file that extends `Gamajo_Template_Loader` (or the new prefixed name, if you installed via Composer/Mozart). You can see the Meal Planner Template Loader example class below as a starting point if it helps.
+3. Override the class properties to suit your plugin. You could also override the `get_templates_dir()` method if it isn't right for you.
+4. You can now instantiate your custom template loader class, and use it to call the `get_template_part()` method. This could be within a shortcode callback, or something you want theme developers to include in their files.
 
   ~~~php
   // Template loader instantiated elsewhere, such as the main plugin file.
