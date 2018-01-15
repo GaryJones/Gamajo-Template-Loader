@@ -2,12 +2,12 @@
   "name": "gamajo/template-loader",
   "description": "A class for your WordPress plugin, to allow loading template parts with fallback through the child theme > parent theme > plugin",
   "keywords": ["wordpress", "templates"],
-  "homepage": "http://github.com/GaryJones/Gamajo-Template-Loader",
+  "homepage": "https://github.com/GaryJones/Gamajo-Template-Loader",
   "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "Gary Jones",
-      "homepage": "http://gamajo.com",
+      "homepage": "https://gamajo.com",
       "role": "Developer"
     }
   ],
