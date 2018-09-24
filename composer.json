@@ -1,7 +1,10 @@
 {
   "name": "gamajo/template-loader",
   "description": "A class for your WordPress plugin, to allow loading template parts with fallback through the child theme > parent theme > plugin",
-  "keywords": ["wordpress", "templates"],
+  "keywords": [
+    "wordpress",
+    "templates"
+  ],
   "homepage": "https://github.com/GaryJones/Gamajo-Template-Loader",
   "license": "GPL-2.0-or-later",
   "authors": [
@@ -11,9 +14,6 @@
       "role": "Developer"
     }
   ],
-  "support": {
-    "issues": "https://github.com/GaryJones/Gamajo-Template-Loader/issues"
-  },
   "require": {
     "php": ">=5.2.4"
   },
@@ -25,13 +25,18 @@
     "squizlabs/php_codesniffer": "^3.3",
     "wp-coding-standards/wpcs": "^1"
   },
+  "suggest": {
+    "coenjacobs/mozart": "Easily wrap this library with your own prefix, to prevent collisions when multiple plugins use this library"
+  },
   "config": {
     "sort-packages": true
   },
   "autoload": {
-    "classmap": ["class-gamajo-template-loader.php"]
+    "classmap": [
+      "class-gamajo-template-loader.php"
+    ]
   },
-  "suggest": {
-    "coenjacobs/mozart": "Easily wrap this library with your own prefix, to prevent collisions when multiple plugins use this library"
+  "support": {
+    "issues": "https://github.com/GaryJones/Gamajo-Template-Loader/issues"
   }
 }
