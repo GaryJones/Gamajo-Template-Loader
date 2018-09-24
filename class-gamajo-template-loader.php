@@ -7,7 +7,7 @@
  * @link      http://github.com/GaryJones/Gamajo-Template-Loader
  * @copyright 2013 Gary Jones
  * @license   GPL-2.0-or-later
- * @version   1.3.0
+ * @version   1.3.1
  */
 
 if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {

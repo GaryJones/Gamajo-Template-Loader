@@ -152,7 +152,7 @@ See the [change log](CHANGELOG.md).
 
 ## License
 
-[GPL-2.0+](LICENSE).
+[GPL 2.0 or later](LICENSE).
 
 ## Contributions
 
@@ -161,4 +161,4 @@ Contributions are welcome - fork, fix and send pull requests against the `develo
 ## Credits
 
 Built by [Gary Jones](https://twitter.com/GaryJ)  
-Copyright 2013 [Gamajo Tech](https://gamajo.com)
+Copyright 2013 [Gary Jones](https://garyjones.io)
