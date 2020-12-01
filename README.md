@@ -39,28 +39,16 @@ or:
   ~~~php
   $meal_planner_template_loader->get_template_part( 'recipe' );
   ~~~
-* If you want to pass data to the template, call the `set_template_data()` method with an array before calling `get_template_part()`. `set_template_data()` returns the loader object to allow for method chaining.
+* If you want to pass data to the template, use the `$args` parameter like in `get_template_part` since WordPress 5.5.
 
   ~~~php
   $data = array( 'foo' => 'bar', 'baz' => 'boom' );
   $meal_planner_template_loader
-      ->set_template_data( $data );
-      ->get_template_part( 'recipe' );
+      ->get_template_part( 'recipe', null, $data );
   ~~~
   
-  The value of `bar` is now available inside the recipe template as `$data->foo`.
+  The value of `foo` is now available inside the recipe template as `$args['foo']`.
   
-  If you wish to use a different variable name, add a second parameter to `set_template_data()`:
-
-  ~~~php
-  $data = array( 'foo' => 'bar', 'baz' => 'boom' );
-  $meal_planner_template_loader
-      ->set_template_data( $data, 'context' )
-      ->get_template_part( 'recipe', 'ingredients' );
-  ~~~
-  
-  The value of `bar` is now available inside the recipe template as `$context->foo`.
-
   This will try to load up `wp-content/themes/my-theme/meal-planner/recipe-ingredients.php`, or `wp-content/themes/my-theme/meal-planner/recipe.php`, then fallback to `wp-content/plugins/meal-planner/templates/recipe-ingredients.php` or `wp-content/plugins/meal-planner/templates/recipe.php`.
 
 ### Meal Planner Example Class
