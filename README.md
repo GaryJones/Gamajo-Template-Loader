@@ -32,7 +32,7 @@ or:
 
   ~~~php
   // Template loader instantiated elsewhere, such as the main plugin file.
-  $meal_planner_template_loader = new Meal_Planner_Template_Loader;
+  $meal_planner_template_loader = new Meal_Planner_Template_Loader();
   ~~~
 * Use it to call the `get_template_part()` method. This could be within a shortcode callback, or something you want theme developers to include in their files.
 
@@ -63,6 +63,20 @@ or:
 
   This will try to load up `wp-content/themes/my-theme/meal-planner/recipe-ingredients.php`, or `wp-content/themes/my-theme/meal-planner/recipe.php`, then fallback to `wp-content/plugins/meal-planner/templates/recipe-ingredients.php` or `wp-content/plugins/meal-planner/templates/recipe.php`.
 
+* You can also pass the template loader object into the template as well:
+  ~~~php
+  $template_loader = new Your_Template_Loader();
+  $template_loader->set_template_data(
+      array(
+		      'template_loader' => $template_loader,
+    		  // Optional other data as needed.
+	    )
+  );
+  ~~~
+  Then in the template you can use:
+  ~~~php
+  $data->template_loader->get_template_part( 'recipe' );
+  ~~~
 ### Meal Planner Example Class
 
 ```php
