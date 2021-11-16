@@ -7,7 +7,7 @@
  * @link      http://github.com/GaryJones/Gamajo-Template-Loader
  * @copyright 2013 Gary Jones
  * @license   GPL-2.0-or-later
- * @version   1.3.1
+ * @version   1.4.0
  */
 
 if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
@@ -103,19 +103,20 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 		 *
 		 * @param string $slug Template slug.
 		 * @param string $name Optional. Template variation name. Default null.
+		 * @param array  $args Optional. Variables passed to template. Default empty array.
 		 * @param bool   $load Optional. Whether to load template. Default true.
 		 * @return string
 		 */
-		public function get_template_part( $slug, $name = null, $load = true ) {
+		public function get_template_part( $slug, $name = null, $args = array(), $load = true ) {
 			// Execute code for this part.
-			do_action( 'get_template_part_' . $slug, $slug, $name );
-			do_action( $this->filter_prefix . '_get_template_part_' . $slug, $slug, $name );
+			do_action( 'get_template_part_' . $slug, $slug, $name, $args );
+			do_action( $this->filter_prefix . '_get_template_part_' . $slug, $slug, $name, $args );
 
 			// Get files names of templates, for given slug and name.
-			$templates = $this->get_template_file_names( $slug, $name );
+			$templates = $this->get_template_file_names( $slug, $name, $args );
 
 			// Return the part that is found.
-			return $this->locate_template( $templates, $load, false );
+			return $this->locate_template( $templates, $load, false, $args );
 		}
 
 		/**
@@ -135,7 +136,7 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 		 */
 		public function set_template_data( $data, $var_name = 'data' ) {
 			global $wp_query;
-
+			_deprecated_function( 'set_template_data', '1.4.0' );
 			$wp_query->query_vars[ $var_name ] = (object) $data;
 
 			// Add $var_name to custom variable store if not default value.
@@ -157,7 +158,7 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 		 */
 		public function unset_template_data() {
 			global $wp_query;
-
+			_deprecated_function( 'unset_template_data', '1.4.0' );
 			// Remove any duplicates from the custom variable store.
 			$custom_var_names = array_unique( $this->template_data_var_names );
 
@@ -178,9 +179,10 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 		 *
 		 * @param string $slug Template slug.
 		 * @param string $name Template variation name.
+		 * @param array  $args Optional. Variables passed to template.
 		 * @return array
 		 */
-		protected function get_template_file_names( $slug, $name ) {
+		protected function get_template_file_names( $slug, $name, $args ) {
 			$templates = array();
 			if ( isset( $name ) ) {
 				$templates[] = $slug . '-' . $name . '.php';
@@ -199,7 +201,7 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 			 * @param string $slug      Template slug.
 			 * @param string $name      Template variation name.
 			 */
-			return apply_filters( $this->filter_prefix . '_get_template_part', $templates, $slug, $name );
+			return apply_filters( $this->filter_prefix . '_get_template_part', $templates, $slug, $name, $args );
 		}
 
 		/**
@@ -215,9 +217,11 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 		 * @param bool         $load           If true the template file will be loaded if it is found.
 		 * @param bool         $require_once   Whether to require_once or require. Default true.
 		 *                                     Has no effect if $load is false.
+		 * @param array        $args Optional. Variables passed to template. Default empty array.
+		 *
 		 * @return string The template filename if one is located.
 		 */
-		public function locate_template( $template_names, $load = false, $require_once = true ) {
+		public function locate_template( $template_names, $load = false, $require_once = true, $args = array() ) {
 
 			// Use $template_names as a cache key - either first element of array or the variable itself if it's a string.
 			$cache_key = is_array( $template_names ) ? $template_names[0] : $template_names;
@@ -252,7 +256,7 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 			}
 
 			if ( $load && $located ) {
-				load_template( $located, $require_once );
+				load_template( $located, $require_once, $args );
 			}
 
 			return $located;
